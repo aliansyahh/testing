@@ -21,4 +21,16 @@ class Mahasiswa_model
         $this->koneksi->bind("id", $id);
         return $this->koneksi->single();
     }
+
+    public function tambahMahasiswa($post)
+    {
+        $query = "INSERT INTO " . $this->table . " VALUES ('',:nama,:npm,:email,:jurusan)";
+        $this->koneksi->query($query);
+        $this->koneksi->bind("nama", $post['nama']);
+        $this->koneksi->bind("npm", $post['npm']);
+        $this->koneksi->bind("email", $post['email']);
+        $this->koneksi->bind("jurusan", $post['jurusan']);
+        $this->koneksi->execute();
+        return $this->koneksi->rowCount();
+    }
 }

@@ -18,4 +18,17 @@ class Mahasiswa extends Controller
         $this->view("mahasiswa/detail", $data);
         $this->view("template/footer");
     }
+
+    public function tambah()
+    {
+        if ($this->model('Mahasiswa_model')->tambahMahasiswa($_POST) > 0) {
+            Flasher::setFlasher("Berhasil", "Ditambahkan", "success");
+            header("Location: " . BASEURL . "/Mahasiswa");
+            exit;
+        } else {
+            Flasher::setFlasher("Gagal", "Ditambahkan", "danger");
+            header("Location: " . BASEURL . "/Mahasiswa");
+            exit;
+        }
+    }
 }
