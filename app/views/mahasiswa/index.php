@@ -3,7 +3,7 @@
         <div class="col-md-5">
             <?php Flasher::flash(); ?>
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#formModal">
+            <button type="button" class="btn tambah btn-primary" data-bs-toggle="modal" data-bs-target="#formModal">
                 Tambah Data Mahasiswa
             </button>
         </div>
@@ -17,7 +17,8 @@
                     <a href="<?= BASEURL; ?>/Mahasiswa/hapus/<?= $mhs['id']; ?>" class="btn badge bg-danger float-end"
                         onclick="return confirm('Yakin ?')">hapus</a>
                     <a href="<?= BASEURL; ?>/Mahasiswa/ubah/<?= $mhs['id']; ?>"
-                        class="btn badge bg-warning float-end me-1">ubah</a>
+                        class="btn badge bg-warning float-end me-1 ubah" data-bs-toggle="modal"
+                        data-bs-target="#formModal" data-id="<?= $mhs['id']; ?>">ubah</a>
                     <a href="<?= BASEURL; ?>/Mahasiswa/detail/<?= $mhs['id']; ?>"
                         class="btn badge bg-primary float-end me-1">detail</a>
                 </li>
@@ -40,6 +41,7 @@
             </div>
             <div class="modal-body">
                 <form action="<?= BASEURL; ?>/Mahasiswa/tambah" method="post">
+                    <input type="hidden" name="id" id="id">
                     <div class="form-group">
                         <label for="nama" class="form-label">Nama</label>
                         <input type="text" name="nama" id="nama" class="form-control">
