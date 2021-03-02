@@ -22,6 +22,8 @@ class Mahasiswa_model
         return $this->koneksi->single();
     }
 
+
+
     public function tambahMahasiswa($post)
     {
         $query = "INSERT INTO " . $this->table . " VALUES ('',:nama,:npm,:email,:jurusan)";
@@ -30,6 +32,14 @@ class Mahasiswa_model
         $this->koneksi->bind("npm", $post['npm']);
         $this->koneksi->bind("email", $post['email']);
         $this->koneksi->bind("jurusan", $post['jurusan']);
+        $this->koneksi->execute();
+        return $this->koneksi->rowCount();
+    }
+
+    public function hapusMahasiswa($id)
+    {
+        $this->koneksi->query("DELETE FROM " . $this->table . " WHERE id=:id");
+        $this->koneksi->bind("id", $id);
         $this->koneksi->execute();
         return $this->koneksi->rowCount();
     }
